@@ -68,7 +68,7 @@ export SYMFONY_ENV=prod
 export COMPOSER_CACHE_DIR=$CACHE_DIR/composer
 
 echo "-----> Noding"
-curl -sS http://s3pository.heroku.com/node/v0.10.26/node-v0.10.26-linux-x64.tar.gz | tar xzf
+curl -sS http://s3pository.heroku.com/node/v0.10.26/node-v0.10.26-linux-x64.tar.gz | tar xz
 mv node-v0.10.26-linux-x64 node
 node/bin/npm install less
 export PATH=$(pwd)/node/bin:$(pwd)/node_modules/less/bin:$PATH
