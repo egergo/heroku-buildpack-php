@@ -76,6 +76,9 @@ export PATH=$(pwd)/node/bin:$(pwd)/node_modules/less/bin:$PATH
 echo "-----> Bundling Composer"
 curl -sS https://getcomposer.org/installer | php/bin/php -- --install-dir=bin
 
+echo "assetic_node=\"$(pwd)/node/bin/node\"" >> www/app/config/pdParameters.ini
+echo "assetic_less_path=\"$(pwd)/node_modules\"" >> www/app/config/pdParameters.ini
+
 echo "-----> Composing"
 cd www
 ../php/bin/php ../bin/composer.phar install --prefer-dist --optimize-autoloader --no-interaction --no-dev
