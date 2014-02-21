@@ -75,6 +75,9 @@ cd www
 ../php/bin/php ../bin/composer.phar install
 cd ..
 
+mkdir -p ww/app/logs
+touch www/app/logs/prod.log
+
 cat >>boot.sh <<EOF
 for var in \`env|cut -f1 -d=\`; do
   echo "PassEnv \$var" >> /app/apache/conf/httpd.conf;
