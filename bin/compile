@@ -59,11 +59,11 @@ mkdir -p bin
 ln -s /app/php/bin/php bin/php
 
 echo "-----> Bundling Composer"
-curl -sS https://getcomposer.org/installer | bin/php -- --install-dir=bin
+curl -sS https://getcomposer.org/installer | /app/php/bin/php -- --install-dir=bin
 
 echo "-----> Composing"
 cd www
-../bin/php ../bin/composer.phar install
+/app/php/bin/php /app/bin/composer.phar install
 
 cat >>boot.sh <<EOF
 for var in \`env|cut -f1 -d=\`; do
