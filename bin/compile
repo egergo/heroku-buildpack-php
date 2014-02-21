@@ -63,6 +63,7 @@ echo "extension_dir = \"$(pwd)/php/lib/php/extensions/no-debug-non-zts-20090626/
 
 export PHP_INI_SCAN_DIR=$LP_DIR/conf
 export LD_LIBRARY_PATH=$(pwd)/php/lib/php:$(pwd)/vendor/mcrypt/lib:$(pwd)/www
+export PATH=$(pwd)/bin:$PATH
 
 echo "-----> Bundling Composer"
 curl -sS https://getcomposer.org/installer | php/bin/php -- --install-dir=bin
