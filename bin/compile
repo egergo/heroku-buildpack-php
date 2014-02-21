@@ -58,7 +58,7 @@ cp $LP_DIR/conf/php.ini php
 mkdir -p bin
 ln -s /app/php/bin/php bin/php
 
-export -x LD_LIBRARY_PATH=$(pwd)/php/lib/php:$(pwd)/vendor/mcrypt/lib
+export LD_LIBRARY_PATH=$(pwd)/php/lib/php:$(pwd)/vendor/mcrypt/lib
 echo "LD $LD_LIBRARY_PATH"
 
 echo "-----> Bundling Composer"
