@@ -59,7 +59,7 @@ mkdir -p bin
 ln -s /app/php/bin/php bin/php
 
 echo "-----> Bundling Composer"
-curl -sS https://getcomposer.org/installer | /app/php/bin/php -- --install-dir=bin
+curl -sS https://getcomposer.org/installer | /app/php/bin/php -- --install-dir=/app/bin
 
 echo "-----> Composing"
 cd www
