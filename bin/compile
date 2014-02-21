@@ -72,7 +72,7 @@ curl -sS https://getcomposer.org/installer | php/bin/php -- --install-dir=bin
 
 echo "-----> Composing"
 cd www
-../php/bin/php ../bin/composer.phar install
+../php/bin/php ../bin/composer.phar install --prefer-dist --optimize-autoloader --no-interaction --no-dev
 cd ..
 
 mkdir -p ww/app/logs
