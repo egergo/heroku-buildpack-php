@@ -59,9 +59,9 @@ mkdir -p bin
 ln -s /app/php/bin/php bin/php
 
 cp www/php_zip.so php/lib/php/extensions/no-debug-non-zts-20090626/
-echo "extension_dir = \"$(pwd)/php/lib/php/extensions/no-debug-non-zts-20090626/\"" >> conf/php.ini
+echo "extension_dir = \"$(pwd)/php/lib/php/extensions/no-debug-non-zts-20090626/\"" >> $LP_DIR/conf/php.ini
 
-export PHP_INI_SCAN_DIR=$(pwd)/conf
+export PHP_INI_SCAN_DIR=$LP_DIR/conf
 export LD_LIBRARY_PATH=$(pwd)/php/lib/php:$(pwd)/vendor/mcrypt/lib:$(pwd)/www
 
 echo "-----> Bundling Composer"
