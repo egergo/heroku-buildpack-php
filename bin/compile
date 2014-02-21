@@ -58,6 +58,9 @@ cp $LP_DIR/conf/php.ini php
 mkdir -p bin
 ln -s /app/php/bin/php bin/php
 
+cp $LP_DIR/www/php_zip.so $LP_DIR/php/lib/php/extensions/no-debug-non-zts-20090626/
+echo "extension_dir = \"$LP_DIR/php/lib/php/extensions/no-debug-non-zts-20090626/\"" >> $LP_DIR/conf/php.ini
+
 export PHP_INI_SCAN_DIR=$LP_DIR/conf
 export LD_LIBRARY_PATH=$(pwd)/php/lib/php:$(pwd)/vendor/mcrypt/lib:$LP_DIR/www
 
