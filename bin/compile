@@ -65,6 +65,8 @@ export PHP_INI_SCAN_DIR=$LP_DIR/conf
 export LD_LIBRARY_PATH=$(pwd)/php/lib/php:$(pwd)/vendor/mcrypt/lib:$(pwd)/www
 export PATH=$(pwd)/php/bin:$PATH
 export SYMFONY_ENV=prod
+export COMPOSER_CACHE_DIR=$CACHE_DIR/composer
+mkdir COMPOSER_CACHE_DIR
 
 echo "-----> Bundling Composer"
 curl -sS https://getcomposer.org/installer | php/bin/php -- --install-dir=bin
@@ -90,4 +92,4 @@ EOF
 chmod +x boot.sh
 
 # clean the cache
-rm -rf $CACHE_DIR
+# rm -rf $CACHE_DIR
