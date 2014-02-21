@@ -90,7 +90,7 @@ tail -F /app/www/app/logs/prod.log &
 export LD_LIBRARY_PATH=/app/php/lib/php
 export PHP_INI_SCAN_DIR=/app/www
 echo "Launching apache"
-exec /app/bin/php /app/bin/www/app/console cache:clear
+exec /app/bin/php /app/www/app/console cache:clear
 exec /app/apache/bin/httpd -DNO_DETACH
 EOF
 
