@@ -17,6 +17,7 @@ APACHE_VERSION="2.2.25"
 APACHE_PATH="apache"
 PHP_VERSION="5.3.27"
 PHP_PATH="php"
+NODE_VERSION="0.10.26"
 
 BIN_DIR=$(dirname $0)
 BUILD_DIR=$1
@@ -67,19 +68,26 @@ export PATH=$(pwd)/php/bin:$PATH
 export SYMFONY_ENV=prod
 export COMPOSER_CACHE_DIR=$CACHE_DIR/composer
 
-echo "-----> Noding"
-curl -sS http://s3pository.heroku.com/node/v0.10.26/node-v0.10.26-linux-x64.tar.gz | tar xz
-mv node-v0.10.26-linux-x64 node
+echo "-----> Fetching Node version $NODE_VERSION"
+NODE_URL="http://s3pository.heroku.com/node/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz"
+curl --silent --max-time 60 --location "$NODE_URL" | tar xz
+mv node-v$NODE_VERSION-linux-x64 node
 node/bin/npm install less
 export PATH=$(pwd)/node/bin:$(pwd)/node_modules/less/bin:$PATH
 
 echo "-----> Bundling Composer"
 curl -sS https://getcomposer.org/installer | php/bin/php -- --install-dir=bin
 
-echo "assetic_node=\"$(pwd)/node/bin/node\"" >> www/app/config/pdParameters.ini
-echo "assetic_less_path=\"$(pwd)/node_modules\"" >> www/app/config/pdParameters.ini
+echo "-----> Running Composer"
 
-echo "-----> Composing"
+# creating build env
+cat >www/app/config/env.ini <<EOF
+[parameters]
+  env_node_path="$(pwd)/node/bin/node"
+  env_node_modules_path="$(pwd)/node_modules"
+  env_java_path="$(which java)"
+EOF
+
 cd www
 ../php/bin/php ../bin/composer.phar install --prefer-dist --optimize-autoloader --no-interaction --no-dev
 cd ..
